@@ -1,0 +1,29 @@
+{
+  "name": "ros-jazzy-dev",
+  // Re-use the image you already built elsewhere
+  "image": "ros-jazzy-dev",
+
+  // Mount the workspace exactly where you want it in the container
+  "workspaceFolder": "/home/droneproject/tagslam_ros2_ws",
+
+  // Forward the host network and GPU privileges
+  "runArgs": [
+    "--privileged",
+    "--gpus", "all",
+    "--network", "host",
+    "--ipc", "host",
+    // --- CORRECTED X11 FORWARDING ---
+    "-e", "DISPLAY", // Forward the DISPLAY variable directly from the host
+    "-e", "QT_X11_NO_MITSHM=1",
+    // Mount the .Xauthority file from the user's home directory
+    "-v", "${env:HOME}/.Xauthority:/root/.Xauthority:rw", 
+    "-e", "XAUTHORITY=/root/.Xauthority",
+    // Mount the X11 socket
+    "-v", "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+  ],
+    "mounts": [
+    "source=${localWorkspaceFolder},target=/home/droneproject/tagslam_ros2_ws,type=bind"
+  ],
+  "postCreateCommand": "sudo chown -R $(id -u):$(id -g) /home/droneproject/tagslam_ros2_ws"
+
+}
