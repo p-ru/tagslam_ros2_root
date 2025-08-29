@@ -1,7 +1,9 @@
 {
-  "name": "ros-jazzy-dev",
+  "name": "ros2Tagslam",
   // Re-use the image you already built elsewhere
-  "image": "ros-jazzy-dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
 
   // Mount the workspace exactly where you want it in the container
   "workspaceFolder": "/home/droneproject/tagslam_ros2_ws",
