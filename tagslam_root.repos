@@ -1,7 +1,7 @@
 repositories:
   src/tagslam:
     type: git
-    url: https://github.com/berndpfrommer/tagslam.git
+    url: https://github.com/p-ru/tagslam.git
     version: v2.2
   src/tagslam_viz:
     type: git
